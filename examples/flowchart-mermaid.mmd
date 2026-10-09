@@ -1,0 +1,21 @@
+flowchart TD
+    start([开始]) --> input[/输入账号密码/]
+    input --> verify[校验凭据]
+    verify --> check{验证通过？}
+    check -->|是| home[进入首页]
+    home --> end_node([结束])
+    check -->|否| count[失败计数 +1]
+    count --> limit{超过 3 次？}
+    limit -->|是| lock[锁定账号]
+    lock --> end_node
+    limit -->|否| input
+    classDef term fill:#D5E8D4,stroke:#82B366;
+    classDef proc fill:#DAE8FC,stroke:#6C8EBF;
+    classDef cond fill:#FFF2CC,stroke:#D6B656;
+    classDef warn fill:#FFE6CC,stroke:#D79B00;
+    classDef err fill:#F8CECC,stroke:#B85450;
+    class start,end_node term;
+    class input,verify,home proc;
+    class check,limit cond;
+    class count warn;
+    class lock err;

@@ -1,0 +1,26 @@
+flowchart TD
+    subgraph L1[客户端层]
+        web[Web 前端]
+        mobile[移动端]
+    end
+    subgraph L2[应用层]
+        gateway[API 网关]
+        svc_user[用户服务]
+        svc_order[订单服务]
+    end
+    subgraph L3[数据层]
+        db_user[(用户库)]
+        db_order[(订单库)]
+    end
+    web --> gateway
+    mobile --> svc_user
+    gateway --> svc_user
+    svc_user --> db_user
+    svc_user --> svc_order
+    svc_order --> db_order
+    classDef proc fill:#DAE8FC,stroke:#6C8EBF;
+    classDef gw fill:#D5E8D4,stroke:#82B366;
+    classDef db fill:#FFF2CC,stroke:#D6B656;
+    class web,mobile,svc_user,svc_order proc;
+    class gateway gw;
+    class db_user,db_order db;
